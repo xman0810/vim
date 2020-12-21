@@ -117,12 +117,12 @@ autocmd vimenter * NERDTree
 wincmd w
 autocmd VimEnter * wincmd w
 
-"当NERDTree为剩下的唯一窗口时自动关闭                                                                                     
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif 
+"当NERDTree为剩下的唯一窗口时自动关闭
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 :nn <Leader>1 1gt
 :nn <Leader>2 2gt
 :nn <Leader>3 3gt
-:nn <Leader>4 4gt                                                                                                              
+:nn <Leader>4 4gt
 :nn <Leader>5 5gt
 :nn <Leader>6 6gt
 :nn <Leader>7 7gt
@@ -194,3 +194,5 @@ com! DiffSaved call s:DiffWithSaved()
 
 set hls
 set laststatus=2
+set list
+set listchars=tab:>-,trail:~,extends:>,precedes:<
