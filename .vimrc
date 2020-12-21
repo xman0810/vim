@@ -55,6 +55,8 @@ Plugin 'majutsushi/tagbar'
 
 Plugin 'ctrlpvim/ctrlp.vim'
 
+Plugin 'mhinz/vim-signify'
+
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 map <leader>f :CtrlPMRU<CR>
@@ -126,7 +128,19 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 :nn <Leader>7 7gt
 :nn <Leader>8 8gt
 :nn <Leader>9 9gt
+:nn <Leader>n gt
+:nn <Leader>j gT
 :nn <Leader>0: tablast<CR>
+
+nnoremap tl :tabnext<CR>
+nnoremap th :tabprev<CR>
+nnoremap tn :tabnew<CR>
+nnoremap tc :tabclose<CR>
+nnoremap tm :tabmove<CR>
+nnoremap to :tabonly<CR>
+
+map tt :NERDTreeToggle<CR>
+map ff :NERDTreeFind<CR>
 
 cs add cscope.out
 let g:NERDTreeWinSize = 38
@@ -148,4 +162,15 @@ colorscheme molokai
   "\                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   "\                 <bang>0)
 "nnoremap <silent> <Leader>A :Ag<CR>
+"
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
 
+set hls
+set laststatus=2
