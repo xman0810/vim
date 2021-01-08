@@ -57,6 +57,22 @@ Plugin 'ctrlpvim/ctrlp.vim'
 
 Plugin 'mhinz/vim-signify'
 
+"Plugin 'preservim/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
 map <leader>f :CtrlPMRU<CR>
@@ -74,6 +90,7 @@ let g:ctrlp_follow_symlinks=1
 
 
 call vundle#end()            " required
+
 
 filetype off
 
@@ -142,6 +159,7 @@ nnoremap to :tabonly<CR>
 map tt :NERDTreeToggle<CR>
 map ff :NERDTreeFind<CR>
 
+set nocscopeverbose
 cs add cscope.out
 if has("cscope")
     set csprg=/usr/bin/cscope
@@ -150,6 +168,7 @@ if has("cscope")
     set csverb
     set cspc=3
     "add any database in current dir
+    set nocscopeverbose
     if filereadable("cscope.out")
         cs add cscope.out
     "else search cscope.out elsewhere
